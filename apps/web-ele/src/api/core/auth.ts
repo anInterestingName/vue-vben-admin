@@ -9,7 +9,9 @@ export namespace AuthApi {
 
   /** 登录接口返回值 */
   export interface LoginResult {
-    accessToken: string;
+    access_token: string;
+    refresh_token: string;
+    id_token: string;
   }
 
   export interface RefreshTokenResult {
@@ -22,7 +24,10 @@ export namespace AuthApi {
  * 登录
  */
 export async function loginApi(data: AuthApi.LoginParams) {
-  return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
+  return requestClient.post<AuthApi.LoginResult>(
+    '/blade-authorization/api/bffLogin',
+    data,
+  );
 }
 
 /**
